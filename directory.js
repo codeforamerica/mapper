@@ -7,16 +7,19 @@ ddoc =
   , rewrites :
     [ {from:"/", to:'index.html'}
     , {from:"/api", to:'../../'}
+    , {from:"/api/directory", to:'_view/directory'}
     , {from:"/api/*", to:'../../*'}
     , {from:"/*", to:'*'}
     ]
   }
   ;
 
-ddoc.spatial = { 
-  all: function(doc) {
-    if(doc.name && doc.geometry) {        
-      emit(doc.geometry, doc);
+ddoc.views = { 
+  directory: {
+    map: function(doc) {
+      if(doc.title) {        
+        emit(doc.title, doc);
+      }
     }
   }
 }

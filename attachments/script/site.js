@@ -9,8 +9,10 @@ var app = $.sammy('.directory', function() {
     	baseURL: util.getBaseURL(document.location.pathname)
     };
     
-    var map = mapUtil.createMap(config);
-    util.render('dropdown', 'showbar', {}, true);
+    app.map = mapUtil.createMap(config);
+    app.map.fetchDirectory().then(function(directory) {
+      util.render('dropdown', 'showbar', {data: directory, append: true});
+    })
   })
 })
 

@@ -16,6 +16,7 @@ var mapUtil = function() {
     });
     
     var map = new L.Map('mapContainer', {zoomControl: false});
+    
     map.setView(new L.LatLng(config.mapCenterLat, config.mapCenterLon), config.mapStartZoom).addLayer(cloudmade);
     
     $('.fullscreen').toggle(
@@ -68,14 +69,20 @@ var mapUtil = function() {
         });
       },
 
-      fetchDirectory: function(callback) {
-        $.getJSON(this.config.baseURL + "api/directory", function(featureCollection) {
-          directory = featureCollection.features;
-          directory = { list: directory.map(function(item) { 
-            return item.properties;
-          }) };
-          callback(directory);
-        })
+      fetchDirectory: function() {
+        var ajaxOpts = {
+          url: this.config.baseURL + "api/directory",
+          dataType: 'json',
+          dataFilter: function(data) {
+            var data = { 
+              options: JSON.parse(data).rows.map(function(item) { 
+                return item.value;
+              })
+            }
+            return JSON.stringify(data);
+          }
+        }
+        return $.ajax(ajaxOpts).promise();
       },
 
       getBB: function(){

@@ -29,11 +29,11 @@ var util = function() {
     return exists;
   }
 
-  function render( template, target, data, append ) {
-    if ( ! data ) data = {};
-    var html = $.mustache( $( "#" + template + "Template" ).html(), data ),
+  function render( template, target, options ) {
+    if ( ! options ) options = {data: {}};
+    var html = $.mustache( $( "#" + template + "Template" ).html(), options.data ),
         targetDom = $( "#" + target );
-    if( append ) {
+    if( options.append ) {
       targetDom.append( html );
     } else {
       targetDom.html( html );
