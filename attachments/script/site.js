@@ -1,4 +1,10 @@
-var app = $.sammy('#container', function() {
+var app = {
+  container: '#container',
+  site: {config:{}}, 
+  emitter: new util.Emitter()
+};
+
+app.sammy = $.sammy(app.container, function() {
 
   this.bind('run', function(e) {
     app.config = {
@@ -18,19 +24,26 @@ var app = $.sammy('#container', function() {
   })
 })
 
-app.site = {config:{}}, 
-app.emitter = new util.Emitter();
-
 app.after = {
   map: function() {
     app.map = mapUtil.createMap(app.config);
-    $('label').inFieldLabels();
+    $('label', $(app.container)).inFieldLabels();
+    $('.fullscreen', $(app.container)).toggle(
+      function () {
+        $('.directory', $(app.container)).addClass('fullscreen');
+        app.map.instance.invalidateSize();
+      },
+      function () {
+        $('.directory', $(app.container)).removeClass('fullscreen');
+        app.map.instance.invalidateSize();
+      }
+    )
   },
   dropdown: function() {
-    $("#filter_select_1").sSelect();    
+    $("#filter_select_1", $(app.container)).sSelect();    
   }
 }
 
 $(function() {
-  app.run();
+  app.sammy.run();
 })

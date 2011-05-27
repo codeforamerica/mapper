@@ -24,17 +24,6 @@ var mapUtil = function() {
     var map = new L.Map(config.containerId, {zoomControl: false});
     
     map.setView(new L.LatLng(config.mapCenterLat, config.mapCenterLon), config.mapStartZoom).addLayer(cloudmade);
-    
-    $('.fullscreen', container).toggle(
-      function () {
-        $('.directory', container).addClass('fullscreen');
-        map.invalidateSize();
-      },
-      function () {
-        $('.directory', container).removeClass('fullscreen');
-        map.invalidateSize();
-      }
-    )
 
     return {
       instance: map,
