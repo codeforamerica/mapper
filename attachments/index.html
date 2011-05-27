@@ -1,0 +1,61 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>  <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>  <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head> 
+	<meta charset="utf-8"> 
+	<title>Mapper</title>
+	<link rel="stylesheet" href="style/css3buttons.css" media="screen"> 
+  <link href="style/layout.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="style/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="style/leaflet.ie.css" /><![endif]-->
+  <link rel="stylesheet" href="style/jqueryui/jquery-ui-1.8.13.custom.css"> 
+	<script type="text/javascript" src="script/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="script/jquery-ui-1.8.13.custom.min.js"></script>
+	<script type="text/javascript" src="script/jquery.mustache.js"></script>
+	<script type="text/javascript" src="script/microevent.js"></script>
+	<script type="text/javascript" src="script/leaflet.js"></script>
+	<script type="text/javascript" src="script/jquery.stylishselect.js"></script>
+	<script type="text/javascript" src="script/sammy-0.7.0pre.js"></script>
+	<script type="text/javascript" src="script/site.js"></script>
+</head> 
+<body>
+  <div class="directory">
+    <div id="header">
+      <div class="showbar" id="showbar">
+        <div class="autocompleter"> 
+        	<label for="search">Search: </label> 
+        	<input id="search" /> 
+        </div>
+        <div class="fullscreen"></div>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="left">
+        <div class="sidebar">
+          <div class="top">
+            <div class="title"></div>
+          </div>
+          <div class="bottom">
+          </div>
+        </div>
+      </div>
+      <div id="right">
+        <div id="mapContainer" class="mapContainer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script id="dropdownTemplate" type="text/mustache">
+    <div class="dropdown_filter">
+      <span class='show_me'>Showing:</span>
+      <select id='filter_select_1'>
+      {{#options}}
+        <option value='{{title}}'>{{title}}</option>
+      {{/options}}
+      </select>      
+    </div>
+  </script>
+</body>
+</html>
