@@ -2,6 +2,12 @@ var mapUtil = function() {
   
   function createMap(config) {
     
+    config = $.extend({
+      containerId: 'mapContainer'
+    }, config)
+    
+    var container = $('#' + config.containerId);
+    
     var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/d3394c6c242a4f26bb7dd4f7e132e5ff/37608/256/{z}/{x}/{y}.png',
   	    cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
   	    cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution});
@@ -14,34 +20,35 @@ var mapUtil = function() {
       iconAnchor: new L.Point(5,5),
       popupAnchor: new L.Point(-3, -76)
     });
-    
-    var map = new L.Map('mapContainer', {zoomControl: false});
+        
+    var map = new L.Map(config.containerId, {zoomControl: false});
     
     map.setView(new L.LatLng(config.mapCenterLat, config.mapCenterLon), config.mapStartZoom).addLayer(cloudmade);
     
-    $('.fullscreen').toggle(
+    $('.fullscreen', container).toggle(
       function () {
-        $('.directory').addClass('fullscreen');
+        $('.directory', container).addClass('fullscreen');
         map.invalidateSize();
       },
       function () {
-        $('.directory').removeClass('fullscreen');
+        $('.directory', container).removeClass('fullscreen');
         map.invalidateSize();
       }
     )
 
     return {
       instance: map,
+      container: container,
       config: config,
       markerDot: new MarkerDot(),
       uri: "/" + encodeURIComponent(name) + "/",
       
       showLoader: function() {
-        $('.map_header').first().addClass('loading');
+        $('.map_header', this.container).first().addClass('loading');
       },
 
       hideLoader: function() {
-        $('.map_header').first().removeClass('loading');
+        $('.map_header', this.container).first().removeClass('loading');
       },
 
       showPoint: function(feature) {

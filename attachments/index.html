@@ -26,32 +26,38 @@
 	<script type="text/javascript" src="script/site.js"></script>
 </head> 
 <body>
-  <div class="directory">
-    <div id="header">
-      <div class="showbar" id="showbar">
-        <div class="autocompleter"> 
-          <label for="search">Search</label>
-          <input type="text" name="search" id="search">
-        </div>
-        <div class="fullscreen"></div>
-      </div>
-    </div>
-    <div id="wrapper">
-      <div id="left">
-        <div class="sidebar">
-          <div class="top">
-            <div class="title"></div>
-          </div>
-          <div class="bottom">
-          </div>
-        </div>
-      </div>
-      <div id="right">
-        <div id="mapContainer" class="mapContainer">
-        </div>
-      </div>
-    </div>
+  <div id="container">
   </div>
+  
+  <script id="mapTemplate" type="text/mustache">
+    <div class="directory">
+      <div id="header">
+        <div class="showbar" id="showbar">
+          <div class="autocompleter"> 
+            <label for="search">Search</label>
+            <input type="text" name="search" id="search">
+          </div>
+          <div class="fullscreen"></div>
+        </div>
+      </div>
+      <div id="wrapper">
+        <div id="left">
+          <div class="sidebar">
+            <div class="top">
+              <div class="title"></div>
+            </div>
+            <div class="bottom">
+            </div>
+          </div>
+        </div>
+        <div id="right">
+          <div id="mapContainer" class="mapContainer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+  
   <script id="dropdownTemplate" type="text/mustache">
     <div class="dropdown_filter">
       <span class='show_me'>Showing:</span>
@@ -62,5 +68,6 @@
       </select>      
     </div>
   </script>
+  
 </body>
 </html>

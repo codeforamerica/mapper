@@ -41,7 +41,6 @@ var util = function() {
     if (template in app.after) app.after[template]();
   }
 
-
   function formatMetadata(data) {
     out = '<dl>';
     $.each(data, function(key, val) {
