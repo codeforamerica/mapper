@@ -38,7 +38,7 @@ var util = function() {
     } else {
       targetDom.html( html );
     }
-    if (template in app) app[template]();
+    if (template in app.after) app.after[template]();
   }
 
 
